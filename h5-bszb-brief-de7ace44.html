@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>bszb · 场景化信息工具</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #f1f6f9;
+      color: #1c2a3a;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+    /* hero */
+    .hero {
+      background: linear-gradient(135deg, #0b3b42 0%, #14655e 100%);
+      color: #e5f4f1;
+      padding: 60px 0 56px;
+      border-radius: 0 0 36px 36px;
+      box-shadow: 0 8px 24px rgba(0, 40, 40, 0.12);
+    }
+    .hero .container {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      max-width: 720px;
+    }
+    .hero h1 span {
+      display: inline-block;
+      background: #2f918a;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.1rem 1rem;
+      font-size: 0.9em;
+      margin-left: 8px;
+      vertical-align: middle;
+      font-weight: 500;
+    }
+    .hero p {
+      font-size: 1.12rem;
+      max-width: 600px;
+      opacity: 0.9;
+    }
+    .hero-cta {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 28px;
+      align-items: center;
+    }
+    .hero-cta a {
+      display: inline-block;
+      background: #ffffff;
+      color: #0b3b42;
+      font-weight: 600;
+      padding: 12px 30px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+    .hero-cta a:hover {
+      background: #d6ede9;
+      box-shadow: 0 6px 16px rgba(0, 50, 40, 0.18);
+    }
+    .hero-note {
+      font-size: 0.95rem;
+      opacity: 0.7;
+      border-left: 3px solid #3cada3;
+      padding-left: 14px;
+    }
+    /* 网格卡片区 (优势/特点) */
+    .features {
+      padding: 60px 0 40px;
+    }
+    .features h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 28px;
+      color: #0b3b42;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .features h2 small {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #3f6d6a;
+      margin-left: 12px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 26px 20px 24px;
+      box-shadow: 0 4px 12px rgba(0, 30, 20, 0.06);
+      border: 1px solid #d9e6e3;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0, 60, 50, 0.08);
+      border-color: #8fcbc4;
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #13645c;
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #2b4046;
+      opacity: 0.9;
+    }
+    .card-icon {
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    /* 说明区 (场景 + 快速识别) */
+    .explain {
+      background: #e7f0ed;
+      padding: 48px 0 52px;
+      border-radius: 40px 40px 0 0;
+      margin-top: 8px;
+    }
+    .explain .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px 60px;
+    }
+    .explain-left {
+      flex: 2 1 300px;
+    }
+    .explain-left h2 {
+      font-size: 1.7rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: #083a3a;
+    }
+    .explain-left p {
+      margin-bottom: 20px;
+      font-size: 1.02rem;
+    }
+    .explain-left ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .explain-left li {
+      padding: 6px 0 6px 26px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .explain-left li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: #1d8f84;
+      font-weight: bold;
+    }
+    .explain-right {
+      flex: 1.2 1 200px;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 28px 24px;
+      border: 1px solid #b6d2cd;
+    }
+    .explain-right h3 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      color: #0d4d47;
+      border-bottom: 2px solid #53aca0;
+      display: inline-block;
+      padding-bottom: 4px;
+    }
+    .explain-right p {
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .explain-right a {
+      color: #0f6b62;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #53aca0;
+    }
+    .explain-right a:hover {
+      border-bottom-style: solid;
+      color: #053b36;
+    }
+    /* FAQ 摘要 */
+    .faq-preview {
+      padding: 50px 0 40px;
+    }
+    .faq-preview h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #0b3b42;
+      margin-bottom: 28px;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .faq-item {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 20px;
+      border-left: 5px solid #32837b;
+      box-shadow: 0 2px 8px rgba(0, 30, 20, 0.03);
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #0b4d46;
+    }
+    .faq-item p {
+      font-size: 0.92rem;
+      color: #2d454a;
+    }
+    .faq-more {
+      margin-top: 32px;
+      text-align: right;
+      font-size: 0.95rem;
+      color: #1d6e65;
+    }
+    /* 底部链接 */
+    .site-footer {
+      background: #0f3236;
+      color: #bdd6d2;
+      padding: 32px 0;
+      margin-top: auto;
+      text-align: center;
+      border-radius: 30px 30px 0 0;
+    }
+    .site-footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px 28px;
+    }
+    .footer-links a {
+      color: #cbe4df;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
+      font-weight: 400;
+    }
+    .footer-links a:hover {
+      border-bottom-color: #7ccfc2;
+      color: #e1f5f0;
+    }
+    .footer-copy {
+      opacity: 0.6;
+      font-size: 0.85rem;
+    }
+    .inline-link {
+      color: #1c9286;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid #6fbfb4;
+    }
+    .inline-link:hover {
+      color: #06443e;
+      border-bottom-color: #06443e;
+    }
+    /* 响应式 */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero-cta { flex-direction: column; align-items: flex-start; }
+      .hero-cta a { width: auto; }
+      .explain .container { flex-direction: column; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <h1>bsbz <span>场景化</span></h1>
+      <p>一个轻量级信息入口，帮助你在不同浏览环境下快速判断用途、获取核心提示。适合日常查找、快速定位与简单验证。</p>
+      <div class="hero-cta">
+        <a href="https://h5-bszb.com">bszb</a>
+        <div class="hero-note">无需注册 · 直接访问</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2>特点与定位 <small>· 三组关键词</small></h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>即刻识别</h3>
+          <p>页面结构清晰，减少多余跳转。无论设备类型，打开即能判断是否符合当前需求。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>适应多端</h3>
+          <p>移动端与桌面端布局自适应，核心信息始终可见，避免缩放与误触。</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>信息集约</h3>
+          <p>不是门户，不堆砌链接；只提供必要提示与方向，适合快速决策。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="explain">
+    <div class="container">
+      <div class="explain-left">
+        <h2>使用场景 · 一目了然</h2>
+        <p>当你打开一个未知链接或进入某个工具页，最先需要确认的是「这是做什么的」。bsbz 页面本身即是一种回答：</p>
+        <ul>
+          <li>适合在浏览器中快速打开并核对用途</li>
+          <li>用于区分某个资源是否为你需要的类型</li>
+          <li>作为轻导航，搭配其他页面使用</li>
+        </ul>
+        <p style="margin-top: 16px;">如果你需要更具体的说明，可直接访问 <a href="https://h5-bszb.com" class="inline-link">bszb</a> 查看当前版本提供的内容。</p>
+      </div>
+      <div class="explain-right">
+        <h3>一句话概括</h3>
+        <p>bsbz 是一个聚焦「识别与引导」的极简页面，不收集信息、不强制交互，仅提供环境判断与基础指引。</p>
+        <p>它适合作为书签、临时入口或快速参考。所有核心操作都在一个页面上完成。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-preview">
+    <div class="container">
+      <h2>常见疑问 · 摘要</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <strong>这个页面需要登录吗？</strong>
+          <p>不需要。bsbz 完全公开，打开即用，不涉及注册或个人信息。</p>
+        </div>
+        <div class="faq-item">
+          <strong>移动端能否正常显示？</strong>
+          <p>页面针对手机与平板做了适配，卡片、按钮、字体均响应式调整。</p>
+        </div>
+        <div class="faq-item">
+          <strong>链接指向哪里？</strong>
+          <p>主链接指向 <a href="https://h5-bszb.com" style="color:#0f6b62;text-decoration:underline;">bszb</a> 自身，可直接访问最新版本。</p>
+        </div>
+        <div class="faq-item">
+          <strong>内容会更新吗？</strong>
+          <p>页面结构保持稳定，但提示文本与布局细节可能随需求微调。</p>
+        </div>
+      </div>
+      <div class="faq-more">更多信息请直接浏览页面 · 无需额外搜索</div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://h5-bszb.com">bszb</a>
+        <a href="https://h5-bszb.com" style="opacity:0.8;">bszb</a>
+      </div>
+      <div class="footer-copy">提供简洁识别环境 · 无跟踪无广告</div>
+    </div>
+  </footer>
+</body>
+</html>
