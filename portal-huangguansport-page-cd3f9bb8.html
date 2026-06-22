@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>皇冠体育 · 稳定入口与页面说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f9f8f6;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem 4rem;
+        }
+
+        .page {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* hero 开场 —— 短句，留白 */
+        .hero {
+            margin-top: 2.4rem;
+            margin-bottom: 2.8rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            letter-spacing: 0.01em;
+            color: #3b3b3b;
+            border-left: 2px solid #c7a55b;
+            padding-left: 1.2rem;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .hero em {
+            font-style: normal;
+            background: transparent;
+            color: #7e5c2d;
+        }
+
+        /* 标题层级 */
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 360;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.2rem;
+            color: #1c1c1c;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            margin-top: 2.8rem;
+            margin-bottom: 1rem;
+            color: #2a2a2a;
+            line-height: 1.3;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #ddd9d1;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 440;
+            margin-top: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #2e2e2e;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-weight: 340;
+            font-size: 1rem;
+            color: #2c2c2c;
+        }
+
+        a {
+            color: #7e5c2d;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.15s ease;
+        }
+
+        a:hover {
+            color: #b88740;
+            text-decoration-thickness: 2px;
+        }
+
+        /* 承接段落 —— 稳定入口角度 */
+        .entry-note {
+            background: transparent;
+            border: 1px solid #e1dbd0;
+            padding: 1.5rem 1.5rem 1.5rem 1.8rem;
+            margin: 2rem 0 1.6rem;
+            border-radius: 0;
+            border-left-width: 3px;
+            border-left-color: #b89d6a;
+            font-size: 0.98rem;
+        }
+
+        .entry-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 特点列表 —— 极简，窄，无圆点 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0 1.8rem;
+        }
+
+        .feature-list li {
+            padding: 0.9rem 0 0.9rem 0.2rem;
+            border-bottom: 1px solid #ece8e0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            font-weight: 340;
+        }
+
+        .feature-list li::before {
+            content: "—";
+            color: #b99d66;
+            font-weight: 300;
+            margin-right: 0.15rem;
+        }
+
+        /* 温和细节 */
+        .detail-note {
+            background: #f3f0ea;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0;
+            border: none;
+            font-size: 0.95rem;
+            color: #3a3a3a;
+        }
+
+        .detail-note strong {
+            font-weight: 460;
+            color: #2f2f2f;
+        }
+
+        /* FAQ 摘要 —— 保持克制 */
+        .faq-mini {
+            margin: 2.6rem 0 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #efebe4;
+            padding: 0.5rem 0;
+        }
+
+        .faq-question {
+            font-weight: 420;
+            color: #1f1f1f;
+            font-size: 0.98rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .faq-answer {
+            font-size: 0.92rem;
+            color: #4e4e4e;
+            margin-top: 0.1rem;
+            line-height: 1.5;
+        }
+
+        .footer-mild {
+            margin-top: 3.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e3ddd2;
+            font-size: 0.9rem;
+            color: #6b6b6b;
+            text-align: left;
+        }
+
+        .footer-mild a {
+            color: #6b5a3e;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 500px) {
+            body {
+                padding: 1.4rem 1rem 3rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding-left: 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.15rem;
+                margin-top: 2rem;
+            }
+
+            .entry-note {
+                padding: 1.2rem 1rem;
+            }
+
+            .feature-list li {
+                padding: 0.7rem 0;
+                font-size: 0.95rem;
+            }
+
+            .faq-question {
+                font-size: 0.93rem;
+            }
+        }
+
+        @media (min-width: 760px) {
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句：直接、克制 -->
+    <div class="hero">
+        <p>有时只是需要一个不变的入口。<br>没有干扰，没有多余转折——<em>只是抵达</em>。</p>
+    </div>
+
+    <h1>关于稳定入口与页面说明</h1>
+
+    <!-- 承接段落 -->
+    <p>
+        运行一个面向日常访问的页面，最朴素的愿望往往是「它一直在」。不需要猜测路径，不需要记住复杂后缀。
+        从最初搭建开始，这个页面就将重心放在<strong>一致性</strong>上：结构长时间不变，链接保持直接，内容只做必要的说明。
+    </p>
+
+    <p>
+        你在这里看到的，就是整个界面的核心解释。它不追逐短暂潮流，也不堆积信息。每当你想回到这个环境，
+        记住一个地址就够了。下面是对页面特点与使用场景的梳理。
+    </p>
+
+    <!-- 特点列表 (从稳定入口、页面说明角度) -->
+    <h2>页面特点</h2>
+    <ul class="feature-list">
+        <li>单一且持续的入口 —— 不需要在不同版本之间选择，始终指向同一位置。</li>
+        <li>轻说明，重可达 —— 页面主要作用是展示基本状态和必要的指引，而非营销。</li>
+        <li>结构透明 —— 你看到的标题、段落、细节，都对应实际页面的功能分区。</li>
+        <li>最小变动原则 —— 除非必要，否则不调整布局与文案，降低认知负担。</li>
+    </ul>
+
+    <!-- 自然嵌入链接的句子：严格「皇冠体育」可点文本 -->
+    <div class="entry-note">
+        <p>
+            如果你正在寻找一个稳定的访问起点，可以直接前往
+            <a href="https://portal-huangguansport.com">皇冠体育</a>。
+            该页面保持简洁，不包含无关跳转，适合作为日常参考地址。
+        </p>
+        <p style="margin-top: 0.6rem;">
+            需要说明的是：这里提到的「皇冠体育」就是本页说明所对应的实际站点，
+            你可以在浏览器中打开它，核对页面布局与信息是否与描述一致。
+        </p>
+    </div>
+
+    <h2>常见疑问摘要</h2>
+    <div class="faq-mini">
+        <div class="faq-item">
+            <div class="faq-question">这个页面的主要用途是什么？</div>
+            <div class="faq-answer">提供关于稳定入口的简要说明，同时给出指向实际站点的直接链接。内容围绕可访问性展开，不做功能夸大。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">为什么强调“页面说明”？</div>
+            <div class="faq-answer">因为很多访问者需要快速理解一个页面的作用。将说明独立出来，可以减少进入主站后的困惑。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">链接会变化吗？</div>
+            <div class="faq-answer">不会。本页中的链接指向固定地址 <code>https://portal-huangguansport.com</code>，长期有效。</div>
+        </div>
+    </div>
+
+    <!-- 温和结尾 + 场景提示 -->
+    <div class="detail-note">
+        <strong>场景提示：</strong> 如果你习惯将常用页面固定在书签栏，或者通过备忘录保存入口，
+        这个页面可以作为你的对照参考。它不收集信息，不设弹窗，只做讲述。
+    </div>
+
+    <div class="footer-mild">
+        <p>叙述页 · 版本更新于 2025 · 仅作说明用途</p>
+    </div>
+
+</div>
+</body>
+</html>
